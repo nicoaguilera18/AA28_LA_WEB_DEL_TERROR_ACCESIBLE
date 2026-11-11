@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Halloween</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="cabecera">
+        <a href="index.html" class="logo">🎃 Halloween</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="registro.html">Registrarse</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Iniciar sesión</h1>
+        <form id="formLogin" class="formulario">
+            <label for="nombre">Usuario</label>
+            <input type="text" id="nombre" required>
+
+            <label for="clave">Contraseña</label>
+            <input type="password" id="clave" required>
+
+            <button type="submit" class="btn">Entrar</button>
+            <p id="mensaje" role="status"></p>
+        </form>
+        <p class="enlace-alterno">¿No tenés cuenta? <a href="registro.html">Registrate</a></p>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
+    </footer>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --fondo: #120a1a;
+    --tarjeta: #1f1230;
+    --naranja: #ff7518;
+    --violeta: #8e44ad;
+    --texto: #f3e9ff;
+    --error: #ff5c5c;
+    --exito: #6be28d;
+}
+
+[hidden] { display: none !important; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, .logo { font-family: 'Creepster', cursive; letter-spacing: 2px; color: var(--naranja); }
+h1 { font-size: 2.6rem; text-align: center; margin-bottom: 16px; }
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 40px;
+    background: #000;
+    border-bottom: 3px solid var(--naranja);
+}
+.logo { font-size: 1.8rem; text-decoration: none; }
+nav ul { display: flex; align-items: center; gap: 20px; list-style: none; }
+nav a { color: var(--texto); text-decoration: none; font-weight: 600; }
+nav a:hover { color: var(--naranja); }
+
+main { flex: 1; padding: 40px; }
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 24px;
+}
+.tarjeta {
+    background: var(--tarjeta);
+    border: 2px solid var(--violeta);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(142, 68, 173, 0.35);
+}
+.tarjeta img, .sin-foto {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+.sin-foto { display: flex; align-items: center; justify-content: center; font-size: 4rem; background: #2c1845; }
+.tarjeta h3 { color: var(--naranja); margin-bottom: 6px; }
+.tarjeta p { margin-bottom: 8px; }
+.votos { font-weight: 600; color: var(--exito); }
+
+.btn, .btn-salir {
+    display: inline-block;
+    background: var(--naranja);
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn:hover, .btn-salir:hover { background: #ff9a4d; }
+.btn-salir { padding: 6px 16px; margin-left: 8px; }
+
+#mensaje, .mensaje { text-align: center; min-height: 1.5em; font-weight: 600; }
+.mensaje-error { color: var(--error); }
+.mensaje-exito { color: var(--exito); }
+
+.formulario {
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--tarjeta);
+    border: 2px solid var(--violeta);
+    border-radius: 16px;
+    padding: 28px;
+}
+.formulario label { font-weight: 600; }
+.formulario input, .formulario textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--violeta);
+    background: #120a1a;
+    color: var(--texto);
+    font-family: 'Outfit', sans-serif;
+}
+
+.pie { text-align: center; padding: 20px; background: #000; font-size: 0.85rem; }
+
+@media (max-width: 600px) {
+    .cabecera { padding: 14px 16px; }
+    main { padding: 24px 16px; }
+    h1 { font-size: 2rem; }
+}
+
+.enlace-alterno { text-align: center; margin-top: 16px; }
+.enlace-alterno a { color: var(--naranja); }
+
+.admin-panel {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 32px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.tabla-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: var(--tarjeta); }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--violeta); }
+th { color: var(--naranja); }
+td img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; }
+.acciones { display: flex; gap: 8px; }
+
+.btn-secundario { background: transparent; color: var(--texto); border: 1px solid var(--violeta); }
+.btn-secundario:hover { background: #2c1845; }
+.btn-peligro { background: var(--error); color: #000; }
+.btn-peligro:hover { background: #ff8a8a; }
+
+@media (max-width: 800px) {
+    .admin-panel { grid-template-columns: 1fr; }
+}
