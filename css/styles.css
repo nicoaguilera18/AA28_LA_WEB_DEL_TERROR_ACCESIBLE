@@ -34,6 +34,21 @@ body {
     min-height: 100vh;
 }
 
+body.fondo-votacion { --imagen-fondo: url("../img/fondo-votacion.jpg"); }
+body.fondo-admin { --imagen-fondo: url("../img/fondo-admin.jpg"); }
+body.fondo-login { --imagen-fondo: url("../img/fondo-login.jpg"); }
+body.fondo-registro { --imagen-fondo: url("../img/fondo-registro.jpg"); }
+
+body[class^="fondo-"] {
+    background-image:
+        linear-gradient(rgba(5, 8, 11, 0.62), rgba(5, 8, 11, 0.78)),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 4px),
+        var(--imagen-fondo);
+    background-size: cover, auto, cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 ::selection { background: var(--sangre); color: #fff; }
 
 a { color: var(--acento); text-underline-offset: 3px; }
