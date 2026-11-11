@@ -1,10 +1,4 @@
 const formulario = document.getElementById('formRegistro');
-const mensaje = document.getElementById('mensaje');
-
-function mostrarMensaje(texto, esError) {
-    mensaje.textContent = texto;
-    mensaje.className = esError ? 'mensaje-error' : 'mensaje-exito';
-}
 
 formulario.addEventListener('submit', async function (evento) {
     evento.preventDefault();
@@ -15,6 +9,7 @@ formulario.addEventListener('submit', async function (evento) {
 
     if (clave !== repetir) {
         mostrarMensaje('Las contraseñas no coinciden', true);
+        document.getElementById('repetir').focus();
         return;
     }
 
@@ -27,10 +22,10 @@ formulario.addEventListener('submit', async function (evento) {
         const datos = await respuesta.json();
 
         if (respuesta.ok) {
-            mostrarMensaje(datos.mensaje + '. Redirigiendo al login...', false);
+            mostrarMensaje(datos.mensaje + '. Te llevamos al inicio de sesión...', false);
             setTimeout(function () {
                 window.location.href = 'login.html';
-            }, 1500);
+            }, 2000);
         } else {
             mostrarMensaje(datos.error, true);
         }

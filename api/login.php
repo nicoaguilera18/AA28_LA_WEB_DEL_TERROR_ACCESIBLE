@@ -13,9 +13,21 @@ $datos = json_decode(file_get_contents('php://input'), true);
 $nombre = trim($datos['nombre'] ?? '');
 $clave = $datos['clave'] ?? '';
 
-$stmt = $pdo->prepare('SELECT id, nombre, clave, es_admin FROM usuarios WHERE nombre = :nombre');
-$stmt->execute([':nombre' => $nombre]);
-$usuario = $stmt->fetch();
+if ($nombre === '' || $clave === '') {
+    http_response_code(400);
+    echo json_encode(['error' => 'Completá usuario y contraseña']);
+    exit;
+}
+
+try {
+    $stmt = $pdo->prepare('SELECT id, nombre, clave, es_admin FROM usuarios WHERE nombre = :nombre');
+    $stmt->execute([':nombre' => $nombre]);
+    $usuario = $stmt->fetch();
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudo iniciar sesión']);
+    exit;
+}
 
 if (!$usuario || !password_verify($clave, $usuario['clave'])) {
     http_response_code(401);

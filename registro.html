@@ -3,45 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Halloween</title>
+    <meta name="description" content="Creá tu cuenta para votar tu disfraz de Halloween favorito.">
+    <title>Registro - Disfraces 𝟐𝟎𝟎𝟎'𝐬 style</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header class="cabecera">
-        <a href="index.html" class="logo">🎃 Halloween</a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="login.html">Iniciar sesión</a></li>
-            </ul>
-        </nav>
-    </header>
+    <a class="saltar" href="#contenido">Saltar al contenido principal</a>
 
-    <main>
-        <h1>Crear cuenta</h1>
-        <form id="formRegistro" class="formulario">
-            <label for="nombre">Usuario</label>
-            <input type="text" id="nombre" minlength="3" maxlength="50" required>
+    <div class="pagina">
+        <header class="cabecera">
+            <a href="index.html" class="logo"><span aria-hidden="true">☠︎︎</span> Disfraces 𝟐𝟎𝟎𝟎'𝐬 style <span aria-hidden="true">☾</span></a>
+            <p class="lema">Votá <span aria-hidden="true">(¬_¬")</span></p>
+            <nav aria-label="Principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="login.html">Iniciar sesión</a></li>
+                    <li><a href="registro.html" aria-current="page">Registrarse</a></li>
+                </ul>
+            </nav>
+        </header>
 
-            <label for="clave">Contraseña</label>
-            <input type="password" id="clave" minlength="6" required>
+        <main id="contenido" tabindex="-1">
+            <h1>Crear cuenta</h1>
+            <div id="mensaje" class="mensaje" role="status" aria-live="polite" aria-atomic="true"></div>
 
-            <label for="repetir">Repetir contraseña</label>
-            <input type="password" id="repetir" minlength="6" required>
+            <form id="formRegistro" class="formulario formulario-chico caja">
+                <p class="ayuda">Todos los campos son obligatorios.</p>
 
-            <button type="submit" class="btn">Registrarme</button>
-            <p id="mensaje" role="status"></p>
-        </form>
-        <p class="enlace-alterno">¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a></p>
-    </main>
+                <label for="nombre">Usuario</label>
+                <input type="text" id="nombre" name="nombre" autocomplete="username" minlength="3" maxlength="50" aria-describedby="ayudaNombre" required>
+                <small id="ayudaNombre" class="ayuda">Entre 3 y 50 caracteres.</small>
 
-    <footer class="pie">
-        <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
-    </footer>
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" autocomplete="new-password" minlength="6" aria-describedby="ayudaClave" required>
+                <small id="ayudaClave" class="ayuda">Mínimo 6 caracteres.</small>
 
+                <label for="repetir">Repetir contraseña</label>
+                <input type="password" id="repetir" name="repetir" autocomplete="new-password" minlength="6" required>
+
+                <button type="submit" class="btn">Registrarme</button>
+            </form>
+
+            <p class="enlace-alterno">¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a></p>
+        </main>
+
+        <footer class="pie">
+            <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
+        </footer>
+    </div>
+
+    <script src="js/comun.js"></script>
     <script src="js/registro.js"></script>
 </body>
 </html>

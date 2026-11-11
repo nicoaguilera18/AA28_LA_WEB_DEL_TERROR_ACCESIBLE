@@ -3,65 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración - Halloween</title>
+    <meta name="description" content="Panel de administración de disfraces del concurso de Halloween.">
+    <title>Administración - Disfraces 𝟐𝟎𝟎𝟎'𝐬 style</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header class="cabecera">
-        <a href="index.html" class="logo">🎃 Halloween</a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Ver votación</a></li>
-            </ul>
-        </nav>
-    </header>
+    <a class="saltar" href="#contenido">Saltar al contenido principal</a>
 
-    <main id="contenido" hidden>
-        <h1>Panel de administración</h1>
-        <p id="mensaje" role="status"></p>
+    <div class="pagina">
+        <header class="cabecera">
+            <a href="index.html" class="logo"><span aria-hidden="true">☠︎︎</span> Disfraces 𝟐𝟎𝟎𝟎'𝐬 style <span aria-hidden="true">☾</span></a>
+            <nav aria-label="Principal">
+                <ul>
+                    <li><a href="index.html">Ver votación</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <div class="admin-panel">
-            <form id="formDisfraz" class="formulario">
-                <h2 id="tituloFormulario">Nuevo disfraz</h2>
-                <input type="hidden" id="disfrazId">
+        <main id="contenido" tabindex="-1" hidden>
+            <h1>Panel de administración</h1>
+            <div id="mensaje" class="mensaje" role="status" aria-live="polite" aria-atomic="true"></div>
 
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" maxlength="50" required>
+            <div class="admin-panel">
+                <form id="formDisfraz" class="formulario caja">
+                    <h2 id="tituloFormulario">Nuevo disfraz</h2>
+                    <input type="hidden" id="disfrazId">
+                    <p class="ayuda">Nombre y descripción son obligatorios.</p>
 
-                <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" rows="4" required></textarea>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" maxlength="50" required>
 
-                <label for="foto">Foto (JPG, PNG o WEBP, máx. 2 MB)</label>
-                <input type="file" id="foto" accept="image/jpeg,image/png,image/webp">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" rows="4" required></textarea>
 
-                <button type="submit" class="btn">Guardar</button>
-                <button type="button" class="btn btn-secundario" id="btnCancelar" hidden>Cancelar edición</button>
-            </form>
+                    <label for="foto">Foto (opcional)</label>
+                    <input type="file" id="foto" accept="image/jpeg,image/png,image/webp" aria-describedby="ayudaFoto">
+                    <small id="ayudaFoto" class="ayuda">JPG, PNG o WEBP, máximo 2 MB.</small>
 
-            <div class="tabla-scroll">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Votos</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaDisfraces"></tbody>
-                </table>
+                    <button type="submit" class="btn">Guardar</button>
+                    <button type="button" class="btn btn-secundario" id="btnCancelar" hidden>Cancelar edición</button>
+                </form>
+
+                <div class="tabla-scroll" role="region" aria-labelledby="tituloTabla" tabindex="0">
+                    <table>
+                        <caption id="tituloTabla">Disfraces cargados</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Votos</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaDisfraces"></tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="pie">
-        <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
-    </footer>
+        <footer class="pie">
+            <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
+        </footer>
+    </div>
 
+    <script src="js/comun.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>

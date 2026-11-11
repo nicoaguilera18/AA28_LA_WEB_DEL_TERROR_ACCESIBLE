@@ -8,11 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-$consulta = $pdo->query(
-    'SELECT id, nombre, descripcion, votos, foto
-     FROM disfraces
-     WHERE eliminado = 0
-     ORDER BY votos DESC, nombre ASC'
-);
-
-echo json_encode($consulta->fetchAll(), JSON_UNESCAPED_UNICODE);
+try {
+    $consulta = $pdo->query(
+        'SELECT id, nombre, descripcion, votos, foto
+         FROM disfraces
+         WHERE eliminado = 0
+         ORDER BY votos DESC, nombre ASC'
+    );
+    echo json_encode($consulta->fetchAll(), JSON_UNESCAPED_UNICODE);
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'No se pudieron obtener los disfraces']);
+}

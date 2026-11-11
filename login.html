@@ -3,42 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión - Halloween</title>
+    <meta name="description" content="Iniciá sesión para votar tu disfraz de Halloween favorito.">
+    <title>Iniciar sesión - Disfraces 𝟐𝟎𝟎𝟎'𝐬 style</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header class="cabecera">
-        <a href="index.html" class="logo">🎃 Halloween</a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="registro.html">Registrarse</a></li>
-            </ul>
-        </nav>
-    </header>
+    <a class="saltar" href="#contenido">Saltar al contenido principal</a>
 
-    <main>
-        <h1>Iniciar sesión</h1>
-        <form id="formLogin" class="formulario">
-            <label for="nombre">Usuario</label>
-            <input type="text" id="nombre" required>
+    <div class="pagina">
+        <header class="cabecera">
+            <a href="index.html" class="logo"><span aria-hidden="true">☠︎︎</span> Disfraces 𝟐𝟎𝟎𝟎'𝐬 style <span aria-hidden="true">☾</span></a>
+            <p class="lema">Votá <span aria-hidden="true">(¬_¬")</span></p>
+            <nav aria-label="Principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="login.html" aria-current="page">Iniciar sesión</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                </ul>
+            </nav>
+        </header>
 
-            <label for="clave">Contraseña</label>
-            <input type="password" id="clave" required>
+        <main id="contenido" tabindex="-1">
+            <h1>Iniciar sesión (˶ᵔ ᵕ ᵔ˶)</h1>
+            <div id="mensaje" class="mensaje" role="status" aria-live="polite" aria-atomic="true"></div>
 
-            <button type="submit" class="btn">Entrar</button>
-            <p id="mensaje" role="status"></p>
-        </form>
-        <p class="enlace-alterno">¿No tenés cuenta? <a href="registro.html">Registrate</a></p>
-    </main>
+            <form id="formLogin" class="formulario formulario-chico caja">
+                <p class="ayuda">Todos los campos son obligatorios.</p>
 
-    <footer class="pie">
-        <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
-    </footer>
+                <label for="nombre">Usuario</label>
+                <input type="text" id="nombre" name="nombre" autocomplete="username" required>
 
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" autocomplete="current-password" required>
+
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+
+            <p class="enlace-alterno">¿No tenés cuenta? <a href="registro.html">Registrate</a></p>
+        </main>
+
+        <footer class="pie">
+            <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
+        </footer>
+    </div>
+
+    <script src="js/comun.js"></script>
     <script src="js/login.js"></script>
 </body>
 </html>

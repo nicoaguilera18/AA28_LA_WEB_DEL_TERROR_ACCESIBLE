@@ -1,10 +1,4 @@
 const formulario = document.getElementById('formLogin');
-const mensaje = document.getElementById('mensaje');
-
-function mostrarMensaje(texto, esError) {
-    mensaje.textContent = texto;
-    mensaje.className = esError ? 'mensaje-error' : 'mensaje-exito';
-}
 
 formulario.addEventListener('submit', async function (evento) {
     evento.preventDefault();

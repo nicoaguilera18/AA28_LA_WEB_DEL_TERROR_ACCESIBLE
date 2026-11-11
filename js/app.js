@@ -1,16 +1,10 @@
 const listaDisfraces = document.getElementById('listaDisfraces');
-const mensaje = document.getElementById('mensaje');
 const itemLogin = document.getElementById('itemLogin');
 const itemRegistro = document.getElementById('itemRegistro');
 const itemAdmin = document.getElementById('itemAdmin');
 const itemUsuario = document.getElementById('itemUsuario');
 const nombreUsuario = document.getElementById('nombreUsuario');
 const btnLogout = document.getElementById('btnLogout');
-
-function mostrarMensaje(texto, esError) {
-    mensaje.textContent = texto;
-    mensaje.className = esError ? 'mensaje-error' : 'mensaje-exito';
-}
 
 function actualizarNavegacion(sesion) {
     const logueado = sesion !== null;
@@ -36,20 +30,22 @@ async function verificarSesion() {
 
 function crearTarjeta(disfraz) {
     const tarjeta = document.createElement('article');
-    tarjeta.className = 'tarjeta';
-
-    const imagen = document.createElement('img');
-    imagen.src = 'img/' + disfraz.foto;
-    imagen.alt = disfraz.nombre;
-    imagen.addEventListener('error', function () {
-        const reemplazo = document.createElement('div');
-        reemplazo.className = 'sin-foto';
-        reemplazo.textContent = '🎃';
-        imagen.replaceWith(reemplazo);
-    });
+    tarjeta.className = 'perfil';
 
     const titulo = document.createElement('h3');
     titulo.textContent = disfraz.nombre;
+
+    const imagen = document.createElement('img');
+    imagen.src = 'img/' + disfraz.foto;
+    imagen.alt = 'Foto del disfraz ' + disfraz.nombre;
+    imagen.addEventListener('error', function () {
+        const reemplazo = document.createElement('div');
+        reemplazo.className = 'sin-foto';
+        reemplazo.textContent = '☠';
+        reemplazo.setAttribute('role', 'img');
+        reemplazo.setAttribute('aria-label', 'Sin foto para ' + disfraz.nombre);
+        imagen.replaceWith(reemplazo);
+    });
 
     const descripcion = document.createElement('p');
     descripcion.textContent = disfraz.descripcion;
@@ -62,19 +58,30 @@ function crearTarjeta(disfraz) {
     boton.type = 'button';
     boton.className = 'btn';
     boton.textContent = 'Votar';
+    boton.setAttribute('aria-label', 'Votar por ' + disfraz.nombre);
+    boton.dataset.id = disfraz.id;
     boton.addEventListener('click', function () {
         votar(disfraz.id);
     });
 
-    tarjeta.append(imagen, titulo, descripcion, votos, boton);
+    tarjeta.append(titulo, imagen, descripcion, votos, boton);
     return tarjeta;
 }
 
-async function cargarDisfraces() {
+async function cargarDisfraces(idParaEnfocar) {
     try {
         const respuesta = await fetch('api/disfraces.php');
         const disfraces = await respuesta.json();
         listaDisfraces.replaceChildren(...disfraces.map(crearTarjeta));
+
+        // Al redibujar la lista el botón enfocado se destruye;
+        // se devuelve el foco al mismo botón para no perder al usuario de teclado.
+        if (idParaEnfocar) {
+            const boton = listaDisfraces.querySelector('button[data-id="' + idParaEnfocar + '"]');
+            if (boton) {
+                boton.focus();
+            }
+        }
     } catch (error) {
         mostrarMensaje('No se pudieron cargar los disfraces', true);
     }
@@ -91,7 +98,7 @@ async function votar(idDisfraz) {
 
         if (respuesta.ok) {
             mostrarMensaje(datos.mensaje, false);
-            cargarDisfraces();
+            cargarDisfraces(idDisfraz);
         } else {
             mostrarMensaje(datos.error, true);
         }
@@ -101,9 +108,18 @@ async function votar(idDisfraz) {
 }
 
 btnLogout.addEventListener('click', async function () {
-    await fetch('api/logout.php', { method: 'POST' });
-    actualizarNavegacion(null);
-    mostrarMensaje('Sesión cerrada', false);
+    try {
+        const respuesta = await fetch('api/logout.php', { method: 'POST' });
+        if (!respuesta.ok) {
+            mostrarMensaje('No se pudo cerrar la sesión', true);
+            return;
+        }
+        actualizarNavegacion(null);
+        mostrarMensaje('Sesión cerrada', false);
+        document.querySelector('#itemLogin a').focus();
+    } catch (error) {
+        mostrarMensaje('Error de conexión con el servidor', true);
+    }
 });
 
 verificarSesion();

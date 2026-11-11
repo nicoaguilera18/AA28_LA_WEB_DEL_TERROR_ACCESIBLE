@@ -3,38 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disfraces de Halloween</title>
+    <meta name="description" content="Concurso de disfraces de Halloween: registrate, iniciá sesión y votá por tu disfraz favorito.">
+    <title>Disfraces 𝟐𝟎𝟎𝟎'𝐬 style - Votá tu disfraz favorito</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header class="cabecera">
-        <a href="index.html" class="logo">🎃 Halloween</a>
-        <nav>
-            <ul>
-                <li id="itemLogin"><a href="login.html">Iniciar sesión</a></li>
-                <li id="itemRegistro"><a href="registro.html">Registrarse</a></li>
-                <li id="itemAdmin" hidden><a href="admin.html">Administración</a></li>
-                <li id="itemUsuario" hidden>
-                    <span id="nombreUsuario"></span>
-                    <button type="button" id="btnLogout" class="btn-salir">Salir</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <a class="saltar" href="#contenido">Saltar al contenido principal</a>
 
-    <main>
-        <h1>Votá tu disfraz favorito</h1>
-        <p id="mensaje" role="status"></p>
-        <section id="listaDisfraces" class="grilla"></section>
-    </main>
+    <div class="pagina">
+        <header class="cabecera">
+            <a href="index.html" class="logo"><span aria-hidden="true">☠︎︎</span> Disfraces 𝟐𝟎𝟎𝟎'𝐬 style <span aria-hidden="true">☾</span></a>
+            <p class="lema">Votá <span aria-hidden="true">˙𐃷˙</span></p>
+            <nav aria-label="Principal">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
+                    <li id="itemLogin"><a href="login.html">Iniciar sesión</a></li>
+                    <li id="itemRegistro"><a href="registro.html">Registrarse</a></li>
+                    <li id="itemAdmin" hidden><a href="admin.html">Administración</a></li>
+                    <li id="itemUsuario" hidden>
+                        <span id="nombreUsuario"></span>
+                        <button type="button" id="btnLogout" class="btn btn-chico">Salir</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-    <footer class="pie">
-        <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
-    </footer>
+        <div class="cuerpo">
+            <main id="contenido" tabindex="-1">
+                <h1>Votá tu disfraz favorito ✮</h1>
+                <div id="mensaje" class="mensaje" role="status" aria-live="polite" aria-atomic="true"></div>
 
+                <section aria-labelledby="titulo-candidatos">
+                    <h2 id="titulo-candidatos">Los candidatos ✌︎㋡</h2>
+                    <div id="listaDisfraces" class="grilla"></div>
+                </section>
+            </main>
+
+            <aside class="lateral" aria-label="Información del concurso">
+                <div class="caja">
+                    <h2>Sobre este perfil</h2>
+                    <p>Te damos la bienvenida a los 𝟐𝟎𝟎𝟎'𝐬. Acá votá al que más te guste.</p>
+                </div>
+                <div class="caja">
+                    <h2>Cómo votar</h2>
+                    <ol>
+                        <li>Registrate con un usuario y una contraseña.</li>
+                        <li>Iniciá sesión.</li>
+                        <li>Tocá <strong>Votar</strong> en tu disfraz favorito.</li>
+                    </ol>
+                    <p class="ayuda">Podés votar una vez por cada disfraz.</p>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="pie">
+            <p>&copy; 2026 - Universidad de la Cuenca del Plata - Paradigmas y Lenguajes de Programación III</p>
+        </footer>
+    </div>
+
+    <script src="js/comun.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

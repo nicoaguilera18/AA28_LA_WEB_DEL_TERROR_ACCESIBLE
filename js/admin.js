@@ -1,5 +1,4 @@
 const contenido = document.getElementById('contenido');
-const mensaje = document.getElementById('mensaje');
 const formulario = document.getElementById('formDisfraz');
 const campoId = document.getElementById('disfrazId');
 const campoNombre = document.getElementById('nombre');
@@ -8,11 +7,6 @@ const campoFoto = document.getElementById('foto');
 const tituloFormulario = document.getElementById('tituloFormulario');
 const btnCancelar = document.getElementById('btnCancelar');
 const tablaDisfraces = document.getElementById('tablaDisfraces');
-
-function mostrarMensaje(texto, esError) {
-    mensaje.textContent = texto;
-    mensaje.className = esError ? 'mensaje-error' : 'mensaje-exito';
-}
 
 async function verificarAdmin() {
     try {
@@ -53,9 +47,13 @@ function crearFila(disfraz) {
     const celdaFoto = document.createElement('td');
     const imagen = document.createElement('img');
     imagen.src = 'img/' + disfraz.foto + '?v=' + Date.now();
-    imagen.alt = disfraz.nombre;
+    imagen.alt = 'Foto del disfraz ' + disfraz.nombre;
     imagen.addEventListener('error', function () {
-        imagen.replaceWith(document.createTextNode('🎃'));
+        const reemplazo = document.createElement('span');
+        reemplazo.textContent = '☠';
+        reemplazo.setAttribute('role', 'img');
+        reemplazo.setAttribute('aria-label', 'Sin foto');
+        imagen.replaceWith(reemplazo);
     });
     celdaFoto.appendChild(imagen);
 
@@ -74,16 +72,18 @@ function crearFila(disfraz) {
 
     const btnEditar = document.createElement('button');
     btnEditar.type = 'button';
-    btnEditar.className = 'btn btn-secundario';
+    btnEditar.className = 'btn btn-secundario btn-chico';
     btnEditar.textContent = 'Editar';
+    btnEditar.setAttribute('aria-label', 'Editar ' + disfraz.nombre);
     btnEditar.addEventListener('click', function () {
         cargarEnFormulario(disfraz);
     });
 
     const btnEliminar = document.createElement('button');
     btnEliminar.type = 'button';
-    btnEliminar.className = 'btn btn-peligro';
+    btnEliminar.className = 'btn btn-peligro btn-chico';
     btnEliminar.textContent = 'Eliminar';
+    btnEliminar.setAttribute('aria-label', 'Eliminar ' + disfraz.nombre);
     btnEliminar.addEventListener('click', function () {
         eliminarDisfraz(disfraz);
     });
@@ -135,7 +135,9 @@ async function eliminarDisfraz(disfraz) {
             if (campoId.value === String(disfraz.id)) {
                 limpiarFormulario();
             }
-            cargarTabla();
+            await cargarTabla();
+            // El botón enfocado desapareció con la fila: se devuelve el foco al formulario.
+            campoNombre.focus();
         } else {
             mostrarMensaje(datos.error, true);
         }
@@ -189,7 +191,10 @@ formulario.addEventListener('submit', async function (evento) {
     }
 });
 
-btnCancelar.addEventListener('click', limpiarFormulario);
+btnCancelar.addEventListener('click', function () {
+    limpiarFormulario();
+    campoNombre.focus();
+});
 
 async function iniciar() {
     if (await verificarAdmin()) {
